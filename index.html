@@ -1,0 +1,564 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>FSC</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/index.css">
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(function(){
+		//banner_1
+		var i=0;
+		var clone=$(".banner_1_img li").first().clone();
+		$(".banner_1_img").append(clone);
+		var size=$(".banner_1_img li").size();
+		for(var j=0;j<size-1;j++){
+			$(".spot").append("<li></li>");
+		}
+		$(".spot li").first().addClass("on");
+		//方点控制
+		$(".spot li").click(function(){
+			var index=$(this).index();
+			i=index;
+			$(".banner_1_img").stop().animate({left:-index*960},2000);
+			$(this).addClass("on").siblings().removeClass("on");
+		})
+		//函数
+		function move(){
+			if(i==-1){
+				$(".banner_1_img").css({left:-(size-1)*960});
+				i=size-2;
+			}
+			if(i==size){
+				$(".banner_1_img").css({left:0});
+				i=1;
+			}
+			$(".banner_1_img").stop().animate({left:-i*960},3000);
+			if(i==size-1){
+				$(".spot li").eq(0).addClass("on").siblings().removeClass("on");
+			}else{
+				$(".spot li").eq(i).addClass("on").siblings().removeClass("on");
+			}
+		}
+		//自动播放 
+		var t=setInterval(function(){
+			i++;
+			move();
+		},3000);
+		//鼠标悬停  
+		$(".banner_1").hover(function(){
+			clearInterval(t);
+		},function(){
+			t=setInterval(function(){
+				i++;
+				move();
+			},3000);
+		})
+		
+	})
+</script>	
+
+
+</head>
+
+<body>
+<!--  顶部  -->
+<div class="top">
+	<p class="gWidth">
+		<a href="#">汽车经销商大全</a>
+		<a href="#">北京车展</a>
+		<a href="#">全国行情</a>
+		<a href="#">成都分站</a>
+		<a href="#">网上车贷</a>
+		<a href="#">登录</a>
+		<span>|</span>
+		<a href="#">注册</a>
+		<a href="#">[收藏本站]</a>
+	</p>	
+</div>	
+
+<!--  导航  -->
+<div class="header clearfix gWidth">
+	<div class="fl">
+		<img src="img/logo.png" alt="">
+	</div>	
+	<div class="menu fr">
+		<p>
+			<span>
+				<a href="#">新车</a>
+				<a href="#">国产</a>
+				<a href="#">进口</a>
+				<a href="#">谍照</a>
+			</span>
+			<span>
+				<a href="#">资讯</a>
+				<a href="#">行业</a>
+				<a href="#">车企动态</a>
+				<a href="#">原创</a>
+			</span>
+			<span>
+				<a href="#">评测</a>
+				<a href="#">专业评测</a>
+				<a href="#">对比测试</a>
+				<a href="#">深度解析</a>
+			</span>
+			<span>
+				<a href="#">导购</a>
+				<a href="#">行情</a>
+			</span>
+			<span>
+				<a href="#">电子杂志</a>
+				<a href="#">评刊</a>
+			</span>
+		</p>
+		<p>
+			<a href="#">图库</a><em>|</em>
+			<a href="#">问答</a><em>|</em>
+			<a href="#">体验</a><em>|</em>
+			<a href="#">汽车赛事</a><em>|</em>
+			<a href="#">汽车改装</a><em>|</em>
+			<a href="#">自驾游</a><em>|</em>
+			<a href="#">汽车技术</a><em>|</em>
+			<a href="#">汽车设计</a><em>|</em>
+			<a href="#">用车养车</a><em>|</em>
+			<a href="#">二手车</a><em>|</em>
+			<a href="#">《调查》</a><em>|</em>
+			<a href="#">问答</a>
+		</p>
+	</div>
+</div>	
+	
+<!--  搜索  -->	
+<div class="search_bg gWidth">
+<div class="search clearfix">
+	<div class="fast_s fl">
+		<span>快速找车 》</span>
+		<input type="text" placeholder="请输入关键字">
+		<input type="button" value="查找">
+	</div>
+	<div class="brand_s fl">
+		<img src="img/search_bg_1.png" alt="" class="l_0">
+		<span>品牌找车 》</span>
+		<select name="brand_s">
+			<option value="1">选择品牌</option>
+			<option value="2"></option>
+			<option value="3"></option>
+			<option value="4"></option>
+			<option value="5"></option>
+		</select>
+		<select name="serie_s">
+			<option value="1">选择车系</option>
+			<option value="2"></option>
+			<option value="3"></option>
+			<option value="4"></option>
+			<option value="5"></option>
+		</select>
+		<input type="button" value="查找">
+		<img src="img/search_bg_1.png" alt="" class="r_0">
+	</div>
+	<div class="lib_s fl">
+		<span>车型库 》</span>
+		<span>
+			<a href="">按品牌</a><em>|</em>
+			<a href="">按价格</a><em>|</em>
+			<a href="">按级别</a><em>|</em>
+			<a href="">按拼音</a>
+		</span>
+	</div>
+</div>	
+</div>
+	
+<!--  焦点图  -->	
+<div class="banner gWidth">
+<!--  焦点图 上  -->
+<div class="banner_1 gWidth">
+	<ul class="banner_1_img">
+		<li><a href="#"><img src="img/banner_1.png" alt=""></a></li>
+		<li><a href="#"><img src="img/banner_1.png" alt=""></a></li>
+		<li><a href="#"><img src="img/banner_1.png" alt=""></a></li>
+		<li><a href="#"><img src="img/banner_1.png" alt=""></a></li>
+		<li><a href="#"><img src="img/banner_1.png" alt=""></a></li>
+		<li><a href="#"><img src="img/banner_1.png" alt=""></a></li>
+		<li><a href="#"><img src="img/banner_1.png" alt=""></a></li>
+	</ul>
+</div>	
+<!--  控制圆点  -->	
+<div class="banner_1_spot clearfix">
+	<p class="fl"><em>hot</em><span>FSC</span> 焦点推荐</p>	
+	<ul class="spot fr clearfix">
+	</ul>
+</div>
+<!--  焦点图 下  -->
+<div class="banner_2 gWidth">
+	<ul class="banner_2_img">
+		<li><a href="#">
+			<img src="img/banner_2.png" alt="">
+			<div class="intro">
+				纳智捷大7 SUV正式上市，共推出07/08/008亮排量五款车型
+			</div>
+		</a></li>
+		<li><a href="#">
+			<img src="img/banner_2.png" alt="">
+			<div class="intro">
+				纳智捷大7 SUV正式上市，共推出07/08/008亮排量五款车型
+			</div>
+		</a></li>
+		<li><a href="#">
+			<img src="img/banner_2.png" alt="">
+			<div class="intro">
+				纳智捷大7 SUV正式上市，共推出07/08/008亮排量五款车型
+			</div>
+		</a></li>
+		<li><a href="#">
+			<img src="img/banner_2.png" alt="">
+			<div class="intro">
+				纳智捷大7 SUV正式上市，共推出07/08/008亮排量五款车型
+			</div>
+		</a></li>
+		<li><a href="#">
+			<img src="img/banner_2.png" alt="">
+			<div class="intro">
+				纳智捷大7 SUV正式上市，共推出07/08/008亮排量五款车型
+			</div>
+		</a></li>
+	</ul>
+	<em href="" class="prev">&lt;</em>
+	<em href="" class="next">&gt;</em>
+</div>	
+<!--  焦点图 车型展示  -->
+<div class="banner_car gWidth clearfix">
+	<h4 class="clearfix">
+		<em>精彩聚焦</em>
+		<span class="fr"><a href="#" class="le">&lt;</a><a href="#" class="fr">&gt;</a></span>
+		<small class="fr"><em></em><em></em></small>
+	</h4>
+	<ul class="car_img clearfix">
+		<li>
+			<a href=""><figure>
+				<img src="img/car_1.png" alt="">
+				<figcaption>CT200h将于10月26日上市</figcaption>
+			</figure></a>
+			<a href=""><figure>
+				<img src="img/car_2.png" alt="">
+				<figcaption>曝奥迪Q4/Q6全新Q7信息</figcaption>
+			</figure></a>
+			<a href=""><figure>
+				<img src="img/car_3.png" alt="">
+				<figcaption>IS 250 F SPORT售37.1万</figcaption>
+			</figure></a>
+			<a href=""><figure>
+				<img src="img/car_4.png" alt="">
+				<figcaption>克尔维特配七速MT变速箱</figcaption>
+			</figure></a>
+		</li>
+	</ul>
+</div>
+</div>
+	
+<!--  车队成绩  -->	
+<div class="score gWidth">
+	<!--  车队1  -->
+	<div class="sort clearfix">
+		<ul class="ct clearfix gWidth">
+			<li class="fl">01<span></span></li>
+			<li class="clearfix fr">北京工业大学 &gt; BISD车队
+				<span class="fr">目前总成绩：<em>960</em>分</span>
+			</li>
+		</ul>
+		<ul class="infor clearfix gWidth">
+			<li>
+				<figure class="fl">
+					<img src="img/car_0.png" alt="">
+					<figcaption>
+						<a href="">官方微博</a><em>|</em><a href="">更新动态</a>
+					</figcaption>
+				</figure>
+			</li>
+			<li>
+			<table class="hb" border="1" bordercolor="#E0DFDF" style="border-collapse: collapse;font-size: 12px;">
+				<tr>
+					<th>静态项目</th>
+					<td>营销报告</td>
+					<td><em>75</em></td>
+					<td>赛车设计</td>
+					<td><em>150</em></td>
+					<td>成本分析</td>
+					<td col><em>100</em></td>
+				</tr>
+				<tr>
+					<th>动态项目</th>
+					<td>直线加速测试</td>	
+					<td><em>75</em></td>
+					<td>8字绕环测试</td>
+					<td><em>50</em></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<th rowspan="2"></th>
+					<td>高速避障测试</td>
+					<td><em>150</em></td>
+					<td>耐久测试</td>
+					<td><em>300</em></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td>燃油经济性测试</td>
+					<td><em>100</em></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<th>总分</th>
+					<td colspan="6"><span>960</span></td>
+				</tr>
+			</table>
+			</li>
+			<li class="number clearfix">
+				<ul class="post fl">
+					<li>指导老师：</li>
+					<li>车队队长：</li>
+					<li>车队成员：</li>
+				</ul>
+				<ul class="name fl">
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!--  车队2  -->
+	<div class="sort clearfix">
+		<ul class="ct clearfix gWidth">
+			<li class="fl">01<span></span></li>
+			<li class="clearfix fr">北京工业大学 &gt; BISD车队
+				<span class="fr">目前总成绩：<em>960</em>分</span>
+			</li>
+		</ul>
+		<ul class="infor clearfix gWidth">
+			<li>
+				<figure class="fl">
+					<img src="img/car_0.png" alt="">
+					<figcaption>
+						<a href="">官方微博</a><em>|</em><a href="">更新动态</a>
+					</figcaption>
+				</figure>
+			</li>
+			<li>
+			<table class="hb" border="1" bordercolor="#E0DFDF" style="border-collapse: collapse;font-size: 12px;">
+				<tr>
+					<th>静态项目</th>
+					<td>营销报告</td>
+					<td><em>75</em></td>
+					<td>赛车设计</td>
+					<td><em>150</em></td>
+					<td>成本分析</td>
+					<td col><em>100</em></td>
+				</tr>
+				<tr>
+					<th>动态项目</th>
+					<td>直线加速测试</td>	
+					<td><em>75</em></td>
+					<td>8字绕环测试</td>
+					<td><em>50</em></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<th rowspan="2"></th>
+					<td>高速避障测试</td>
+					<td><em>150</em></td>
+					<td>耐久测试</td>
+					<td><em>300</em></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td>燃油经济性测试</td>
+					<td><em>100</em></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<th>总分</th>
+					<td colspan="6"><span>960</span></td>
+				</tr>
+			</table>
+			</li>
+			<li class="number clearfix">
+				<ul class="post fl">
+					<li>指导老师：</li>
+					<li>车队队长：</li>
+					<li>车队成员：</li>
+				</ul>
+				<ul class="name fl">
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!--  车队3  -->
+	<div class="sort clearfix">
+		<ul class="ct clearfix gWidth">
+			<li class="fl">01<span></span></li>
+			<li class="clearfix fr">北京工业大学 &gt; BISD车队
+				<span class="fr">目前总成绩：<em>960</em>分</span>
+			</li>
+		</ul>
+		<ul class="infor clearfix gWidth">
+			<li>
+				<figure class="fl">
+					<img src="img/car_0.png" alt="">
+					<figcaption>
+						<a href="">官方微博</a><em>|</em><a href="">更新动态</a>
+					</figcaption>
+				</figure>
+			</li>
+			<li>
+			<table class="hb" border="1" bordercolor="#E0DFDF" style="border-collapse: collapse;font-size: 12px;">
+				<tr>
+					<th>静态项目</th>
+					<td>营销报告</td>
+					<td><em>75</em></td>
+					<td>赛车设计</td>
+					<td><em>150</em></td>
+					<td>成本分析</td>
+					<td col><em>100</em></td>
+				</tr>
+				<tr>
+					<th>动态项目</th>
+					<td>直线加速测试</td>	
+					<td><em>75</em></td>
+					<td>8字绕环测试</td>
+					<td><em>50</em></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<th rowspan="2"></th>
+					<td>高速避障测试</td>
+					<td><em>150</em></td>
+					<td>耐久测试</td>
+					<td><em>300</em></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td>燃油经济性测试</td>
+					<td><em>100</em></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<th>总分</th>
+					<td colspan="6"><span>960</span></td>
+				</tr>
+			</table>
+			</li>
+			<li class="number clearfix">
+				<ul class="post fl">
+					<li>指导老师：</li>
+					<li>车队队长：</li>
+					<li>车队成员：</li>
+				</ul>
+				<ul class="name fl">
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span><span>李顺虎</span></li>
+					<li><span>李顺虎</span><span>李顺虎</span></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>	
+	
+<!--  赛事图集  -->		
+<div class="fsc_photo gWidth">
+	<h3 class="fsc_pt clearfix">
+		<span>FSC赛事图集</span>
+		<a href="#">更多 》</a>
+	</h3>
+	
+	<ul>
+		<li class="mb_14">
+			<img src="img/photo_1.png" alt="">
+			<img src="img/photo_2.png" alt="">
+			<img src="img/photo_3.png" alt="">
+			<img src="img/photo_4.png" alt="">
+			<img src="img/photo_5.png" alt="">
+		</li>
+		<li>
+			<img src="img/photo_1.png" alt="">
+			<img src="img/photo_2.png" alt="">
+			<img src="img/photo_3.png" alt="">
+			<img src="img/photo_4.png" alt="">
+			<img src="img/photo_5.png" alt="">
+		</li>
+	</ul>
+	
+	<ol>
+		<li>
+			<figure><img src="img/photo_btm_1.png" alt=""><figcaption>天使魔鬼极致诱惑</figcaption></figure>
+			<figure><img src="img/photo_btm_2.png" alt=""><figcaption>美女车模出席</figcaption></figure>
+			<figure><img src="img/photo_btm_3.png" alt=""><figcaption>夜色女郎相遇豪华跑车</figcaption></figure>
+			<figure><img src="img/photo_btm_4.png" alt=""><figcaption>清纯小妹共舞奥迪</figcaption></figure>
+			<figure><img src="img/photo_btm_5.png" alt=""><figcaption>美女车模性感蜕变</figcaption></figure>
+		</li>
+	</ol>
+</div>	
+	
+<!--  推荐文章  -->	
+<div class="news gWidth">
+	<h3>编辑推荐文章</h3>
+	<div class="new">
+	<figure class="clearfix">
+		<img src="img/car_1.png" alt="" class="fl">
+		<figcaption class="fl">
+			<h4><a href="#">完全满足日常需求！试驾新福克斯</a></h4>
+			<p>
+			新福克斯从2012年4月上市至今3个月依赖，始
+			终占据汽车之友紧凑型车以及全国国产车关注
+			度第一的位置，可见这车现在有多热！在今年
+			3月，我们也对新福克斯车型进行了详细测试。
+			并对他的表现给与了很高的评价..<a href="#">[详细]</a>
+			</p>
+		</figcaption>
+	</figure>
+	<figure class="clearfix">
+		<img src="img/car_1.png" alt="" class="fl">
+		<figcaption class="fl">
+			<h4><a href="#">完全满足日常需求！试驾新福克斯</a></h4>
+			<p>
+			新福克斯从2012年4月上市至今3个月依赖，始
+			终占据汽车之友紧凑型车以及全国国产车关注
+			度第一的位置，可见这车现在有多热！在今年
+			3月，我们也对新福克斯车型进行了详细测试。
+			并对他的表现给与了很高的评价..<a href="#">[详细]</a>
+			</p>
+		</figcaption>
+	</figure>
+	</div>
+</div>
+	
+<!--  底部  -->
+<div class="foot gWidth">
+	<p>
+		<a href="">关于我们</a><em>|</em>
+		<a href="">AutoFun动态</a><em>|</em>
+		<a href="">主编社区</a><em>|</em>
+		<a href="">联系我们</a><em>|</em>
+		<a href="">网站地图</a><em>|</em>
+		<a href="">招贤纳士</a><em>|</em>
+		<a href="">友情链接</a><em>|</em>
+		<a href="">百度新闻源</a>
+	</p>
+</div>	
+	
+<!--  版权信息  -->
+<div class="copyright gWidth">
+	<p>
+		Copyright (c) 2004-2012 AutoFun.com.cn, ALL Rights Reserved 版权所有 汽车之右 京ICP证040935号-1 
+	</p>
+</div>		
+</body>
+</html>
+
+			
